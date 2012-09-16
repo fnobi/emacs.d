@@ -5,7 +5,8 @@
 (global-set-key "\C-s" 'isearch-forward-regexp)
 (global-set-key "\C-q" 'query-replace-regexp)
 (global-set-key "\M-l" 'lisp-interaction-mode)
-(global-set-key "\M-I" 'align)
+
+(define-key global-map (kbd "C-t") 'other-window)
 
 ;; for Emacs <23
 (when (< emacs-major-version 23)
@@ -23,6 +24,14 @@
 
 ;; load path setting
 (add-to-load-path "elisp" "conf" "public_repos")
+
+;;japanese
+(set-language-environment "japanese")
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+
 
 ;; color setting
 (if window-system (progn
@@ -48,67 +57,23 @@
 
   ;; フォントの設定
   (set-face-attribute 'default nil
-		      :family "Osaka"
+		      :family "Monaco"
 		      :height 120)
-  (set-fontset-font "fontset-default"
-		    'japanese-jisx0208
-		    '("Osaka" . "jisx0208-sjis"))
 
   ;; ウィンドウサイズの設定
   (setq initial-frame-alist
 	(append
 	 '((top . 20)   
 	   (left . 20)  
-	   (width . 45)  
+	   (width . 90)  
 	   (height . 30) 
 	   ) initial-frame-alist))
 
   ))
 
 
-
-;;ruby-mode
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/ruby")
-(autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
-(setq auto-mode-alist (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
-(setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist))
-(autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
-(autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
-(add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys)))
-
-(setq ruby-indent-level 2)
-(setq ruby-indent-tabs-mode nil)
-
-;;css-mode
-(autoload 'css-mode "css-mode")
-(setq auto-mode-alist
-      (cons '("\\.css\\'" . css-mode)
-auto-mode-alist))
-
-;;php-mode
-(load-library "php-mode")
-(require 'php-mode)
-
-;;japanese
-(set-language-environment "japanese")
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
-
-;;javascript
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
-
-(setq-default c-basic-offset 8)
-
-(when (load "js2" t)
-  (setq js2-cleanup-whitespace nil
-        js2-mirror-mode nil
-        js2-bounce-indent-flag nil)
-  )
-
-;; perl 
-(defalias 'perl-mode 'cperl-mode)
-(setq cperl-indent-level 8
-      cperl-tab-always-indent t)
+(load "init-js")
+(load "init-css")
+(load "init-php")
+(load "init-perl")
+(load "init-ruby")
