@@ -46,9 +46,24 @@
   ;; モードライン（アクティブでないバッファ）の背景色を設定します。
   (set-face-background 'mode-line-inactive "gray85")
 
-))
+  ;; フォントの設定
+  (set-face-attribute 'default nil
+		      :family "Osaka"
+		      :height 120)
+  (set-fontset-font "fontset-default"
+		    'japanese-jisx0208
+		    '("Osaka" . "jisx0208-sjis"))
 
+  ;; ウィンドウサイズの設定
+  (setq initial-frame-alist
+	(append
+	 '((top . 20)   
+	   (left . 20)  
+	   (width . 45)  
+	   (height . 30) 
+	   ) initial-frame-alist))
 
+  ))
 
 
 
