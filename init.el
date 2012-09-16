@@ -71,6 +71,13 @@
 
   ))
 
+;; flymake
+(defun next-flymake-error ()
+  (interactive)
+  (flymake-goto-next-error)
+  (let ((err (get-char-property (point) 'help-echo)))
+    (when err
+      (message err))))
 
 (load "init-js")
 (load "init-css")
