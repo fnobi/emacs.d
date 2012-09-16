@@ -79,6 +79,11 @@
     (when err
       (message err))))
 
+;; egg
+(when (executable-find "git")
+  (require 'egg nil t))
+
+
 (load "init-js")
 (load "init-css")
 (load "init-php")
