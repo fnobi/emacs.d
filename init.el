@@ -1,12 +1,13 @@
 ;; key binds
-(global-set-key "\C-h" 'delete-backward-char)
-(global-set-key "\M-i" 'indent-region)
+(define-key global-map (kbd "C-h") 'delete-backward-char)
+(define-key global-map (kbd "C-t") 'other-window)
+(define-key global-map [?¥] [?\\])  ;; ¥の代わりにバックスラッシュを入力する
 
+(global-set-key "\M-i" 'indent-region)
 (global-set-key "\C-s" 'isearch-forward-regexp)
 (global-set-key "\C-q" 'query-replace-regexp)
 (global-set-key "\M-l" 'lisp-interaction-mode)
 
-(define-key global-map (kbd "C-t") 'other-window)
 
 ;; for Emacs <23
 (when (< emacs-major-version 23)
@@ -69,12 +70,11 @@
   ;; ウィンドウサイズの設定
   (setq initial-frame-alist
 	(append
-	 '((top . 20)   
-	   (left . 20)  
-	   (width . 90)  
-	   (height . 30) 
+	 '((top . 0)
+	   (left . 0)  
+	   (width . 90)
+	   (height . 30)
 	   ) initial-frame-alist))
-
   ))
 
 ;; flymake
@@ -88,6 +88,10 @@
 ;; egg
 (when (executable-find "git")
   (require 'egg nil t))
+
+;; multi-term
+(require 'multi-term)
+(setq multi-term-program "/bin/bash")
 
 
 (load "init-js")
