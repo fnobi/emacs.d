@@ -115,9 +115,11 @@
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
 
+(load "init-howm")
 
 (load "init-js")
 (load "init-css")
 (load "init-php")
 (load "init-perl")
 (load "init-ruby")
+
