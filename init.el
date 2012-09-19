@@ -23,15 +23,23 @@
 	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 	    (normal-top-level-add-subdirs-to-load-path))))))
 
+
 ;; load path setting
 (add-to-load-path "elisp" "conf" "public_repos")
 
+
 ;;japanese
 (set-language-environment "japanese")
+(prefer-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
+
+(when (eq system-type 'darwin)
+  (require 'ucs-normalize)
+  (set-file-name-coding-system 'utf-8-hfs)
+  (setq local-coding-system 'utf-8-hfs))
 
 
 ;; バックアップとオートセーブファイルを~/.emacs.d/backups/へ集める
@@ -39,6 +47,11 @@
 	     (cons "." "~/.emacs.d/backups/"))
 (setq auto-save-file-name-transforms
       `((".*" , (expand-file-name "~/.emacs.d/backups/") t)))
+
+
+;; フレームの設定
+(column-number-mode t)
+
 
 ;; color setting
 (if window-system (progn
@@ -66,6 +79,10 @@
   (set-face-attribute 'default nil
 		      :family "Monaco"
 		      :height 120)
+  (set-fontset-font
+   nil 'japanese-jisx0208
+   (font-spec :family "Hiragino Kaku Gothic Pro"))
+
 
   ;; ウィンドウサイズの設定
   (setq initial-frame-alist
@@ -77,6 +94,7 @@
 	   ) initial-frame-alist))
   ))
 
+
 ;; flymake
 (defun next-flymake-error ()
   (interactive)
@@ -85,9 +103,10 @@
     (when err
       (message err))))
 
+
 ;; egg
-(when (executable-find "git")
-  (require 'egg nil t))
+;; (when (executable-find "git")
+;;  (require 'egg nil t))			
 
 ;; magit
 (require 'magit)
