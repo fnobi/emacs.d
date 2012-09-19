@@ -89,6 +89,9 @@
 (when (executable-find "git")
   (require 'egg nil t))
 
+;; magit
+(require 'magit)
+
 ;; multi-term
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
