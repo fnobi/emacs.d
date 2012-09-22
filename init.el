@@ -1,4 +1,6 @@
-;; key binds
+;;======================================;;
+;; key binds                            ;;
+;;======================================;;
 (define-key global-map (kbd "C-h") 'delete-backward-char)
 (define-key global-map (kbd "C-t") 'other-window)
 (define-key global-map [?¥] [?\\])  ;; ¥の代わりにバックスラッシュを入力する
@@ -8,7 +10,9 @@
 (global-set-key "\C-q" 'query-replace-regexp)
 (global-set-key "\M-l" 'lisp-interaction-mode)
 
-
+;;======================================;;
+;; load path                            ;;
+;;======================================;;
 ;; for Emacs <23
 (when (< emacs-major-version 23)
   (defvar user-emacs directory "~/.emacs.d"))
@@ -28,7 +32,9 @@
 (add-to-load-path "elisp" "conf" "public_repos")
 
 
-;;japanese
+;;======================================;;
+;; japanese                             ;;
+;;======================================;;
 (set-language-environment "japanese")
 (prefer-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -42,6 +48,9 @@
   (setq local-coding-system 'utf-8-hfs))
 
 
+;;======================================;;
+;; backups                              ;;
+;;======================================;;
 ;; バックアップとオートセーブファイルを~/.emacs.d/backups/へ集める
 (add-to-list 'backup-directory-alist
 	     (cons "." "~/.emacs.d/backups/"))
@@ -49,11 +58,15 @@
       `((".*" , (expand-file-name "~/.emacs.d/backups/") t)))
 
 
-;; フレームの設定
+;;======================================;;
+;; frame                                ;;
+;;======================================;;
 (column-number-mode t)
 
 
-;; color setting
+;;======================================;;
+;; color, font, window size             ;;
+;;======================================;;
 (if window-system (progn
 
   ;; 文字の色を設定します。
@@ -87,14 +100,16 @@
   ;; ウィンドウサイズの設定
   (setq initial-frame-alist
 	(append
-	 '((top . 0)
-	   (left . 0)  
+	 '((top . 30)
+	   (left . 30)  
 	   (width . 90)
 	   (height . 30)
 	   ) initial-frame-alist))
   ))
 
-
+;;======================================;;
+;; modules                              ;;
+;;======================================;;
 ;; flymake
 (defun next-flymake-error ()
   (interactive)
@@ -111,12 +126,19 @@
 ;; magit
 (require 'magit)
 
-;; multi-term
-(require 'multi-term)
-(setq multi-term-program "/bin/bash")
+;; windows
+;;(load "init-windows")
 
+;; multi-term
+;;(require 'multi-term)
+;;(setq multi-term-program "/bin/bash")
+
+;; howm
 (load "init-howm")
 
+;;======================================;;
+;; mode                                 ;;
+;;======================================;;
 (load "init-js")
 (load "init-css")
 (load "init-php")
