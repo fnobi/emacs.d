@@ -22,10 +22,10 @@
   (let (path)
     (dolist (path paths paths)
       (let ((default-directory
-	      (expand-file-name (concat user-emacs-directory path))))
-	(add-to-list 'load-path default-directory)
-	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-	    (normal-top-level-add-subdirs-to-load-path))))))
+            (expand-file-name (concat user-emacs-directory path))))
+        (add-to-list 'load-path default-directory)
+        (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+            (normal-top-level-add-subdirs-to-load-path))))))
 
 
 ;; load path setting
@@ -53,7 +53,7 @@
 ;;======================================;;
 ;; バックアップとオートセーブファイルを~/.emacs.d/backups/へ集める
 (add-to-list 'backup-directory-alist
-	     (cons "." "~/.emacs.d/backups/"))
+             (cons "." "~/.emacs.d/backups/"))
 (setq auto-save-file-name-transforms
       `((".*" , (expand-file-name "~/.emacs.d/backups/") t)))
 
@@ -89,8 +89,8 @@
 
   ;; フォントの設定
   (set-face-attribute 'default nil
-		      :family "Monaco"
-		      :height 120)
+                      :family "Monaco"
+                      :height 120)
   (set-fontset-font
    nil 'japanese-jisx0208
    (font-spec :family "Hiragino Kaku Gothic Pro"))
@@ -98,12 +98,12 @@
 
   ;; ウィンドウサイズの設定
   (setq initial-frame-alist
-	(append
-	 '((top . 30)
-	   (left . 30)
-	   (width . 90)
-	   (height . 30)
-	   ) initial-frame-alist))
+        (append
+         '((top . 30)
+           (left . 30)
+           (width . 90)
+           (height . 30)
+           ) initial-frame-alist))
   ))
 
 
