@@ -11,6 +11,20 @@
 (global-set-key "\M-l" 'lisp-interaction-mode)
 
 ;;======================================;;
+;; 折り返し表示ON/OFF                     ;;
+;;======================================;;
+(defun toggle-truncate-lines ()
+  "折り返し表示をトグル動作します."
+  (interactive)
+  (if truncate-lines
+      (setq truncate-lines nil)
+    (setq truncate-lines t))
+  (recenter))
+
+(global-set-key "\C-c\C-l" 'toggle-truncate-lines) ; 折り返し表示ON/OFF
+
+
+;;======================================;;
 ;; load path                            ;;
 ;;======================================;;
 ;; for Emacs <23
@@ -30,7 +44,6 @@
 
 ;; load path setting
 (add-to-load-path "elisp" "conf" "public_repos")
-
 
 ;;======================================;;
 ;; japanese                             ;;
