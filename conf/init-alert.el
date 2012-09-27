@@ -19,14 +19,8 @@
      ("[ \t]+$" 0 my-face-b-1 append)
      (" [\r]*\n" 0 my-face-r-1 append)
      ("\t+ +" 0 my-face-b-1 append)
-     ;; この辺はもしかしらら、js限定かも
-     ("[^ ]{" 0 my-face-u-1 append)
-     ("}[(]" 0 my-face-u-1 append)
-     (",[^ \n]" 0 my-face-u-1 append)
-     ("[^ ]=" 0 my-face-u-1 append)
-     ("=+[^> ]" 0 my-face-u-1 append)
-     ("[^ ]\+" 0 my-face-u-1 append)
-     ("\++[^ ]" 0 my-face-u-1 append)
-     )))
+     ))
+)
+
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 (ad-activate 'font-lock-mode)

@@ -9,3 +9,17 @@
         js2-mirror-mode nil
         js2-bounce-indent-flag nil)
   )
+
+
+(defadvice font-lock-mode (before my-font-lock-mode())
+  (font-lock-add-keywords
+   js2-mode
+   '(
+     ("[^ ]{" 0 my-face-u-1 append)
+     ("}[(]" 0 my-face-u-1 append)
+     (",[^ \n]" 0 my-face-u-1 append)
+     ("[^ !=]=" 0 my-face-u-1 append)
+     ("=[^ =>]" 0 my-face-u-1 append)
+     ;; ("[^ ]\+" 0 my-face-u-1 append)
+     ))
+)
