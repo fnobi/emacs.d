@@ -173,3 +173,11 @@
 (require 'sws-mode)
 (require 'jade-mode)
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+
+;; buster-mode
+(autoload 'buster-mode "buster-mode" nil t)
+(add-hook 'javascript-mode-hook
+	(lambda ()
+	(let* ((file (buffer-file-name))
+		(len (length file)))
+	(If (eq (substring file (- len 8) len) "test.js")) (buster-mode))))
