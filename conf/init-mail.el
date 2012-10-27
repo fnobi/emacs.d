@@ -1,0 +1,5 @@
+(setq user-mail-address "t09832sf@sfc.keio.ac.jp")
+(setq user-full-name "Fujisawa Shin")
+(setq smtpmail-smtp-server "smtp.sfc.keio.ac.jp")
+(setq mail-user-agent 'message-user-agent)
+(setq message-send-mail-function 'message-smtpmail-send-it)

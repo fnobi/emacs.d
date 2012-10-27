@@ -128,6 +128,7 @@
 ;;============================================================================;;
 ;; modules                                                                    ;;
 ;;============================================================================;;
+
 ;; flymake
 (defun next-flymake-error ()
   (interactive)
@@ -135,11 +136,6 @@
   (let ((err (get-char-property (point) 'help-echo)))
     (when err
       (message err))))
-
-
-;; egg
-;; (when (executable-find "git")
-;;  (require 'egg nil t))
 
 ;; magit
 (require 'magit)
@@ -152,8 +148,10 @@
 ;;(setq multi-term-program "/bin/bash")
 
 ;; howm
-(load "init-howm")
+;; (load "init-howm")
 
+;; mail
+(load "init-mail")
 
 
 ;;============================================================================;;
