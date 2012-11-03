@@ -44,7 +44,7 @@
 
 ;; load path setting
 (add-to-load-path "elisp" "conf" "public_repos")
-
+(add-to-list 'load-path "/usr/local/bin")
 ;;============================================================================;;
 ;; japanese                                                                   ;;
 ;;============================================================================;;
@@ -175,6 +175,11 @@
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+
+(add-hook
+ 'markdown-mode-hook
+ '(lambda()
+    (setq markdown-command "mdown")))
 
 ;; jade-mode
 (require 'sws-mode)
