@@ -211,6 +211,30 @@
 		(len (length file)))
 	(If (eq (substring file (- len 8) len) "test.js")) (buster-mode))))
 
+
+;;============================================================================;;
+;; n3 mode                                                                    ;;
+;;============================================================================;;
+;; (add-to-list 'load-path "{path}/n3-mode.el")
+(autoload 'n3-mode "n3-mode" "Major mode for OWL or N3 files" t)
+
+;; Turn on font lock when in n3 mode
+(add-hook 'n3-mode-hook
+          'turn-on-font-lock)
+
+(setq auto-mode-alist
+      (append
+       (list
+        '("\\.n3" . n3-mode)
+        '("\\.owl" . n3-mode))
+       auto-mode-alist))
+
+;; Replace {path} with the full path to n3-mode.el on your system.
+
+;; If you want to make it load just a little faster;
+;; C-x f n3-mode.el
+;; M-x byte-compile-file n3-mode.el
+
 ;;============================================================================;;
 ;; study                                                                      ;;
 ;;============================================================================;;
