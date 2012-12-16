@@ -5,6 +5,7 @@
 (define-key global-map (kbd "C-t") 'other-window)
 (define-key global-map [?¥] [?\\])  ;; ¥の代わりにバックスラッシュを入力する
 
+(global-set-key (kbd "C-/") 'undo)
 (global-set-key "\M-i" 'indent-region)
 (global-set-key "\C-s" 'isearch-forward-regexp)
 (global-set-key "\C-q" 'query-replace-regexp)
