@@ -2,7 +2,6 @@
 ;; key binds                                                                  ;;
 ;;============================================================================;;
 (define-key global-map (kbd "C-h") 'delete-backward-char)
-(define-key global-map (kbd "C-t") 'other-window)
 (define-key global-map [?¥] [?\\])  ;; ¥の代わりにバックスラッシュを入力する
 
 (global-set-key "\M-i" 'indent-region)
@@ -126,14 +125,6 @@
 (load "init-alert")
 
 ;;============================================================================;;
-;; auto-install                                                               ;;
-;;============================================================================;;
-(require 'auto-install)
-(setq auto-install-directory "~/.emacs.d/auto-install/")
-(auto-install-update-emacswiki-package-name t)
-(auto-install-compatibility-setup)             ; 互換性確保
-
-;;============================================================================;;
 ;; anything                                                                   ;;
 ;;============================================================================;;
 (require 'anything)
@@ -142,9 +133,16 @@
 
 (define-key global-map (kbd "C-;") 'anything)
 
+
 ;;============================================================================;;
 ;; modules                                                                    ;;
 ;;============================================================================;;
+;; auto-install
+(require 'auto-install)
+(setq auto-install-directory "~/.emacs.d/auto-install/")
+(auto-install-update-emacswiki-package-name t)
+(auto-install-compatibility-setup)             ; 互換性確保
+
 ;; flymake
 (defun next-flymake-error ()
   (interactive)
@@ -155,6 +153,7 @@
 
 ;; magit
 (require 'magit)
+(define-key global-map (kbd "M-g") 'magit-status)
 
 ;; windows
 ;;(load "init-windows")
