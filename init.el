@@ -5,7 +5,6 @@
 (define-key global-map (kbd "C-t") 'other-window)
 (define-key global-map [?¥] [?\\])  ;; ¥の代わりにバックスラッシュを入力する
 
-(global-set-key (kbd "C-/") 'undo)
 (global-set-key "\M-i" 'indent-region)
 (global-set-key "\C-s" 'isearch-forward-regexp)
 (global-set-key "\C-q" 'query-replace-regexp)
@@ -44,7 +43,7 @@
 
 
 ;; load path setting
-(add-to-load-path "elisp" "conf" "public_repos")
+(add-to-load-path "elisp" "conf" "public_repos" "auto-install")
 (add-to-list 'load-path "/usr/local/bin")
 ;;============================================================================;;
 ;; japanese                                                                   ;;
@@ -127,6 +126,14 @@
 (load "init-alert")
 
 ;;============================================================================;;
+;; auto-install                                                               ;;
+;;============================================================================;;
+(require 'auto-install)
+(setq auto-install-directory "~/.emacs.d/auto-install/")
+(auto-install-update-emacswiki-package-name t)
+(auto-install-compatibility-setup)             ; 互換性確保
+
+;;============================================================================;;
 ;; modules                                                                    ;;
 ;;============================================================================;;
 
@@ -177,7 +184,7 @@
 ;;============================================================================;;
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
 
@@ -204,6 +211,10 @@
 (require 'jade-mode)
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
+;; scss-mode
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
+
 ;; buster-mode
 (autoload 'buster-mode "buster-mode" nil t)
 (add-hook 'javascript-mode-hook
@@ -211,6 +222,9 @@
 	(let* ((file (buffer-file-name))
 		(len (length file)))
 	(If (eq (substring file (- len 8) len) "test.js")) (buster-mode))))
+
+;; sudden-death
+(load "sudden-death")
 
 
 ;;============================================================================;;
