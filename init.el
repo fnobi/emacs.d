@@ -153,7 +153,7 @@
 
 ;; magit
 (require 'magit)
-(define-key global-map (kbd "M-g") 'magit-status)
+(define-key global-map (kbd "C-x g") 'magit-status)
 
 ;; windows
 ;;(load "init-windows")
