@@ -206,7 +206,12 @@
 
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist
+      (append
+       (list
+        '("\\.md" . markdown-mode)
+        '("\\.markdown" . markdown-mode))
+       auto-mode-alist))
 
 (add-hook
  'markdown-mode-hook
@@ -248,6 +253,7 @@
       (append
        (list
         '("\\.n3" . n3-mode)
+        '("\\.ttl" . n3-mode)
         '("\\.owl" . n3-mode))
        auto-mode-alist))
 
