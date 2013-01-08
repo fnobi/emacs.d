@@ -185,6 +185,7 @@
 ;; multi-term
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
+(define-key global-map (kbd "C-x t") 'multi-term)
 
 ;;============================================================================;;
 ;; auto-complete                                                              ;;
