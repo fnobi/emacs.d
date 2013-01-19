@@ -5,3 +5,5 @@ howm
 tramp
 ac-comphist.dat
 eshell/history
+*.gpg
+eshell/lastdir

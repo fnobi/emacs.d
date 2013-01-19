@@ -163,37 +163,9 @@
 
 
 ;;============================================================================;;
-;; terminal                                                                   ;;
+;; shell-setting                                                              ;;
 ;;============================================================================;;
-;; より下に記述した物が PATH の先頭に追加されます
-(dolist (dir (list
-              "/usr/local/mysql/bin"
-              "/sbin"
-              "/usr/sbin"
-              "/bin"
-              "/usr/bin"
-              "/opt/local/bin"
-              "/sw/bin"
-              "/usr/local/bin"
-              (expand-file-name "~/bin")
-              (expand-file-name "~/.emacs.d/bin")
-              ))
- ;; PATH と exec-path に同じ物を追加します
- (when (and (file-exists-p dir) (not (member dir exec-path)))
-   (setenv "PATH" (concat dir ":" (getenv "PATH")))
-   (setq exec-path (append (list dir) exec-path))))
-
-;; multi-term
-(require 'multi-term)
-(setq multi-term-program "/bin/bash")
-(add-hook 'term-mode-hook
-  '(lambda ()
-     ;; C-h を term 内文字削除にする
-     (define-key term-raw-map (kbd "C-h") 'term-send-backspace)
-     ;; C-y を term 内ペーストにする
-     (define-key term-raw-map (kbd "C-y") 'term-paste)
-     ))
-(define-key global-map (kbd "C-x t") 'multi-term)
+(load "init-shell")
 
 ;;============================================================================;;
 ;; auto-complete                                                              ;;
@@ -235,6 +207,7 @@
 ;; scss-mode
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
+(setq scss-compile-at-save nil)
 
 ;; buster-mode
 (autoload 'buster-mode "buster-mode" nil t)
@@ -249,6 +222,10 @@
 
 ;; twttering-mode
 (load "init-twittering")
+
+;; rvm.el
+(require 'rvm)
+(rvm-use-default) ;; use rvm's default ruby for the current Emacs session
 
 ;;============================================================================;;
 ;; n3 mode                                                                    ;;
