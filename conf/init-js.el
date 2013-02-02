@@ -5,8 +5,8 @@
 (setq-default c-basic-offset 8)
 
 (when (load "js2" t)
-  (setq js2-cleanup-whitespace nil
-        js2-mirror-mode nil
+  (setq js2-mirror-mode nil
+        js2-cleanup-tab nil
         js2-bounce-indent-flag nil)
   )
 

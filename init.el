@@ -9,6 +9,8 @@
 (global-set-key "\C-q" 'query-replace-regexp)
 (global-set-key "\M-l" 'lisp-interaction-mode)
 
+(setq-default indent-tabs-mode nil)
+
 ;;============================================================================;;
 ;; toggle truncate lines                                                      ;;
 ;;============================================================================;;
