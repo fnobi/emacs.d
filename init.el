@@ -175,13 +175,13 @@
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)             ; 互換性確保
 
-;; flymake
-(defun next-flymake-error ()
-  (interactive)
-  (flymake-goto-next-error)
-  (let ((err (get-char-property (point) 'help-echo)))
-    (when err
-      (message err))))
+;; ;; flymake
+;; (defun next-flymake-error ()
+;;   (interactive)
+;;   (flymake-goto-next-error)
+;;   (let ((err (get-char-property (point) 'help-echo)))
+;;     (when err
+;;       (message err))))
 
 ;; magit
 (require 'magit)
@@ -230,6 +230,12 @@
  'markdown-mode-hook
  '(lambda()
     (setq markdown-command "mdown")))
+
+;; zencoding-mode
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+(define-key zencoding-mode-keymap (kbd "C-i") 'zencoding-expand-line)
+
 
 ;; jade-mode
 (require 'sws-mode)
