@@ -165,6 +165,11 @@
 
 (define-key global-map (kbd "C-;") 'anything)
 
+;;============================================================================;;
+;; evil                                                                       ;;
+;;============================================================================;;
+;; (add-to-list 'load-path "~/.emacs.d/evil")
+;; (require 'evil)
 
 ;;============================================================================;;
 ;; modules                                                                    ;;
@@ -198,6 +203,28 @@
 ;; shell-setting                                                              ;;
 ;;============================================================================;;
 (load "init-shell")
+
+;; defun: open-new-eshell
+(defun eshell-on-number (num)
+  (interactive)
+  (setq buffer-on-number
+        (get-buffer
+         (concatenate 'string
+                      eshell-buffer-name
+                      (if num
+                          (concatenate 'string "<" (int-to-string num) ">")
+                        ""))))
+  (if buffer-on-number buffer-on-number nil))
+
+(defun open-new-eshell (num)
+  (interactive)
+  (if (eshell-on-number num)
+      (open-new-eshell (if num (+ num 1) 1))
+    (eshell num)))
+
+(define-key global-map
+  (kbd "C-x j")
+  (lambda () (interactive) (open-new-eshell nil)))
 
 ;;============================================================================;;
 ;; auto-complete                                                              ;;

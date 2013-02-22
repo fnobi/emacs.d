@@ -40,6 +40,6 @@
      ;; C-y を term 内ペーストにする
      (define-key term-raw-map (kbd "C-y") 'term-paste)
      ))
-(define-key global-map (kbd "C-x t") 'multi-term)
+;; (define-key global-map (kbd "C-x t") 'multi-term)
 
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-off)
