@@ -7,3 +7,4 @@ ac-comphist.dat
 eshell/history
 *.gpg
 eshell/lastdir
+shellenv.el
