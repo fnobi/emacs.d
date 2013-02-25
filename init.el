@@ -204,27 +204,22 @@
 ;;============================================================================;;
 (load "init-shell")
 
-;; defun: open-new-eshell
-(defun eshell-on-number (num)
-  (interactive)
-  (setq buffer-on-number
-        (get-buffer
-         (concatenate 'string
-                      eshell-buffer-name
-                      (if num
-                          (concatenate 'string "<" (int-to-string num) ">")
-                        ""))))
-  (if buffer-on-number buffer-on-number nil))
+;; 新しいeshell bufferを、1キーバインドで開くための設定
 
-(defun open-new-eshell (num)
-  (interactive)
-  (if (eshell-on-number num)
-      (open-new-eshell (if num (+ num 1) 1))
-    (eshell num)))
+;; 次に開くべきeshell bufferの名前(string)を、intに変換
+(defun new-eshell-number ()
+  (setq new-buffer-name (generate-new-buffer-name eshell-buffer-name))
+  (if (= (length new-buffer-name) (length eshell-buffer-name))
+      nil
+    (string-to-int
+     (substring
+      new-buffer-name
+      (+ (length eshell-buffer-name) 1) (- (length new-buffer-name) 1)))))
 
+;; キーバインド→関数eshellの引数に、new-eshell-numberを与えるもの
 (define-key global-map
   (kbd "C-x j")
-  (lambda () (interactive) (open-new-eshell nil)))
+  (lambda () (interactive) (eshell (new-eshell-number))))
 
 ;;============================================================================;;
 ;; auto-complete                                                              ;;
