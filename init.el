@@ -74,7 +74,7 @@
 
 
 ;; load path setting
-(add-to-load-path "elisp" "conf" "public_repos" "auto-install")
+(add-to-load-path "elisp" "conf" "public_repos")
 
 ;;============================================================================;;
 ;; japanese                                                                   ;;
@@ -138,18 +138,7 @@
   (set-fontset-font
    nil 'japanese-jisx0208
    (font-spec :family "Hiragino Kaku Gothic Pro"))
-
-
-  ;; ウィンドウサイズの設定
-  (setq initial-frame-alist
-        (append
-         '((top . 30)
-           (left . 30)
-           (width . 90)
-           (height . 30)
-           ) initial-frame-alist))
-  ))
-
+)
 
 ;;============================================================================;;
 ;; tab, full-space alert                                                      ;;
@@ -166,37 +155,10 @@
 (define-key global-map (kbd "C-;") 'anything)
 
 ;;============================================================================;;
-;; evil                                                                       ;;
+;; magit                                                                      ;;
 ;;============================================================================;;
-;; (add-to-list 'load-path "~/.emacs.d/evil")
-;; (require 'evil)
-
-;;============================================================================;;
-;; modules                                                                    ;;
-;;============================================================================;;
-;; auto-install
-(require 'auto-install)
-(setq auto-install-directory "~/.emacs.d/auto-install/")
-(auto-install-update-emacswiki-package-name t)
-(auto-install-compatibility-setup)             ; 互換性確保
-
-;; ;; flymake
-;; (defun next-flymake-error ()
-;;   (interactive)
-;;   (flymake-goto-next-error)
-;;   (let ((err (get-char-property (point) 'help-echo)))
-;;     (when err
-;;       (message err))))
-
-;; magit
 (require 'magit)
 (define-key global-map (kbd "C-x g") 'magit-status)
-
-;; windows
-;;(load "init-windows")
-
-;; howm
-;; (load "init-howm")
 
 
 ;;============================================================================;;
@@ -334,3 +296,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;; ウィンドウサイズの設定
+(setq initial-frame-alist
+      (append
+       '((top . 30)
+         (left . 30)
+         (width . 90)
+         (height . 30)
+         ) initial-frame-alist))
+)
+
