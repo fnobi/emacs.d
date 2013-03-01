@@ -1,7 +1,9 @@
-;; perl 
+;; perl
 (defalias 'perl-mode 'cperl-mode)
-(setq cperl-indent-level 8
-      cperl-tab-always-indent t)
+(setq cperl-indent-level 4
+      cperl-tab-always-indent nil)
+
+(add-to-list 'auto-mode-alist '("\\.\\(pl\\|pm\\|psgi\\)$" . cperl-mode))
 
 ;; flymake
 (require 'flymake)
