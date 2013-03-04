@@ -74,7 +74,7 @@
 
 
 ;; load path setting
-(add-to-load-path "elisp" "conf" "public_repos")
+(add-to-load-path "elisp" "conf" "public_repos" "auto-install")
 
 ;;============================================================================;;
 ;; japanese                                                                   ;;
@@ -153,6 +153,17 @@
 (add-to-list 'anything-sources 'anything-c-source-emacs-commands)
 
 (define-key global-map (kbd "C-;") 'anything)
+
+
+;;============================================================================;;
+;; align                                                                      ;;
+;;============================================================================;;
+(define-key global-map (kbd "M-p") 'align)
+
+;; (add-to-list 'align-rules-list
+;;              '(arrow-align
+;;                (regexp . "\\( *\\)=>")
+;;                (modes . '(perl-mode))))
 
 ;;============================================================================;;
 ;; magit                                                                      ;;
