@@ -171,29 +171,6 @@
 (require 'magit)
 (define-key global-map (kbd "C-x g") 'magit-status)
 
-
-;;============================================================================;;
-;; shell-setting                                                              ;;
-;;============================================================================;;
-(load "init-shell")
-
-;; 新しいeshell bufferを、1キーバインドで開くための設定
-
-;; 次に開くべきeshell bufferの名前(string)を、intに変換
-(defun new-eshell-number ()
-  (setq new-buffer-name (generate-new-buffer-name eshell-buffer-name))
-  (if (= (length new-buffer-name) (length eshell-buffer-name))
-      nil
-    (string-to-int
-     (substring
-      new-buffer-name
-      (+ (length eshell-buffer-name) 1) (- (length new-buffer-name) 1)))))
-
-;; キーバインド→関数eshellの引数に、new-eshell-numberを与えるもの
-(define-key global-map
-  (kbd "C-x j")
-  (lambda () (interactive) (eshell (new-eshell-number))))
-
 ;;============================================================================;;
 ;; auto-complete                                                              ;;
 ;;============================================================================;;
@@ -307,6 +284,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;;============================================================================;;
+;; shell-setting                                                              ;;
+;;============================================================================;;
+(load "init-shell")
+(load "eshell-custom")
 
 
 ;; ウィンドウサイズの設定
