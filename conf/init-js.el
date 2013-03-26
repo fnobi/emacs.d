@@ -2,7 +2,7 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
 
-(setq-default c-basic-offset 8)
+(setq-default c-basic-offset 4)
 
 (when (load "js2" t)
   (setq js2-mirror-mode nil
