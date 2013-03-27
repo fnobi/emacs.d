@@ -214,6 +214,7 @@
 ;; zencoding-mode
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+(setq zencoding-indentation 0)
 (define-key zencoding-mode-keymap (kbd "C-i") 'zencoding-expand-line)
 
 
