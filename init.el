@@ -236,6 +236,9 @@
 		(len (length file)))
 	(If (eq (substring file (- len 8) len) "test.js")) (buster-mode))))
 
+;; nginx-mode
+(require 'nginx-mode)
+
 ;; sudden-death
 (load "sudden-death")
 
