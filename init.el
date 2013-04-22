@@ -74,7 +74,7 @@
 
 
 ;; load path setting
-(add-to-load-path "elisp" "conf" "public_repos" "auto-install")
+(add-to-load-path "elisp" "conf" "public_repos" "auto-install" "elisp/yasnippet")
 
 ;;============================================================================;;
 ;; japanese                                                                   ;;
@@ -152,7 +152,7 @@
 (require 'anything-config)
 (add-to-list 'anything-sources 'anything-c-source-emacs-commands)
 
-(define-key global-map (kbd "C-;") 'anything)
+;; (define-key global-map (kbd "C-;") 'anything)
 
 
 ;;============================================================================;;
@@ -186,6 +186,24 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+
+
+;;============================================================================;;
+;; yasnippet                                                                  ;;
+;;============================================================================;;
+(require 'yasnippet)
+
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+        "~/.emacs.d/elisp/yasnippet/snippets"
+        ))
+(yas-global-mode 1)
+
+(define-key snippet-mode-map (kbd "C-;") 'yas-expand)
+
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
 
 ;;============================================================================;;
@@ -272,6 +290,15 @@
 ;; If you want to make it load just a little faster;
 ;; C-x f n3-mode.el
 ;; M-x byte-compile-file n3-mode.el
+
+
+;;============================================================================;;
+;; study                                                                      ;;
+;;============================================================================;;
+(require 'judge-indent)
+(global-judge-indent-mode t)
+(setq judge-indent-major-modes '(js2-mode scss-mode))
+
 
 ;;============================================================================;;
 ;; study                                                                      ;;
