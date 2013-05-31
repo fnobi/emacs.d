@@ -3,9 +3,9 @@
   (interactive "p")
   (message "The result is %d" (* 7 number)))
 
-(point)
+;; (point)
 
-(multiply-by-seven 3)
+;; (multiply-by-seven 3)
 
 ;; 現在のカーソルの位置と、バッファー終端の位置を教えてくれる
 (defun posit (start end)
